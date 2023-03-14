@@ -18,7 +18,7 @@
                                     <div class="position-relative">
                                         <img  src="{{ $comic['thumb'] }}" alt="">
                                         <div class="position-absolute comic-more">
-                                            <a href="{{ route('comics.show') }}" class="load">Dettagli</a>
+                                            <a href="{{ route('comics.show', $comic->id) }}" class="load">Dettagli</a>
                                         </div>
                                     </div>
                                 </div>
