@@ -45,3 +45,14 @@
 .item img{
     height: 50%;
 }
+
+.comic-more{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: none;
+}
+
+.comic-thumb:hover .comic-more{
+    display: block;
+}

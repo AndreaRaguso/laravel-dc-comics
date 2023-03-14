@@ -12,25 +12,10 @@
     <div class="container main-content position-relative py-5">
         
         <a href="#" class="series">CURRENT SERIES</a>
-
-        <div class="row">
-    
-            {{-- @foreach ($comics as $comic)
-                <div class="col-2 items">
-    
-                    <img src="{{ $comic['thumb'] }}" alt="">
-    
-                    {{ $comic['series'] }}
-    
-                </div>
-            @endforeach --}}
-            
-        </div>
         
-        <div class="d-flex justify-content-center">
-            <a href="#" class="load">Visualizza Comics</a>
-            <a href="#" class="load mx-5">Crea Comic</a>
-            <a href="#" class="load">Cerca Comic</a>
+        <div class="d-flex justify-content-center py-5">
+            <a href="{{ route('comics.index') }}" class="load">Visualizza Comics</a>
+            <a href="{{ route('comics.create') }}" class="load mx-5">Crea Comic</a>
         </div>
 
     </div>
