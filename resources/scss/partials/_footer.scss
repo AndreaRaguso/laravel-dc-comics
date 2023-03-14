@@ -1,0 +1,66 @@
+.top-f{
+    background-image: url('/resources/img/footer-bg.jpg');
+    background-repeat: no-repeat;
+    width: 100%;
+    background-size: cover;
+}
+
+.top-f ul{
+    list-style: none;
+}
+
+.logo-bg{
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 50%;
+}
+
+.subtitle{
+    width: 50%;
+    justify-content: start;
+}
+
+.logo-bg img{
+    object-position: center;
+    object-fit: none;
+    height: 100%;
+    width: 100%;
+}
+
+.parent {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 400px;
+  }
+  .image1 {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  .image2 {
+    position: absolute;
+    top: 0;
+    right: 20%;
+    height: 100%;
+  }
+
+  .f-bottom{
+    background-color: #303030;
+    height: 70px;
+  }
+
+  .follow{
+    color: #0282f9;
+  }
+
+  .sign a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    border: 2px solid #0282f9;
+    padding: 10px;
+  }

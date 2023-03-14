@@ -1,0 +1,47 @@
+.main-bg{
+    background-color: #1c1c1c;
+    color: white;
+    font-size: 1.3em;
+}
+
+.series{
+    background-color: #024481;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 5px 25px;
+    position: absolute;
+    top: -20px;
+}
+
+
+.items{
+    cursor: pointer;
+}
+
+
+.items img{
+    height: 200px;
+    width: 200px;
+}
+
+.load{
+    background-color: #0282f9;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 5px 25px;
+}
+
+
+.bg-b{
+    background-color: #0282f9;
+}
+
+.item{
+    height: 100px;
+}
+
+.item img{
+    height: 50%;
+}

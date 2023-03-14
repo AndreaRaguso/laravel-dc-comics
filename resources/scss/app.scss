@@ -1,20 +1,9 @@
 @import "~bootstrap/scss/bootstrap";
+@import "partials/header";
+@import "partials/main";
+@import "partials/footer";
 
-.row {
-    > * {
-        height: 100vh;
+$blue: #0282f9;
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
 
-        color: lightcoral;
-        background-color: aquamarine;
-        background-image: url('../img/laravel.png');
-        background-size: 50px 50px;
-    }
-}
 
-img {
-    max-height: 150px;
-}
