@@ -25,7 +25,7 @@
 
                                             @method('DELETE')
 
-                                            <button type="submit" class="load">
+                                            <button type="submit" class="load" data-toggle="modal" data-target="#exampleModal">
                                                 Cancella
                                             </button>
                                         </form>
@@ -40,6 +40,8 @@
                         </div>
                     </div>
                 @endforeach
+
+                    
 
             </div>
 
