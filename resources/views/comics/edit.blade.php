@@ -5,41 +5,57 @@
 
         <div class="container main-content position-relative py-5">
 
-            <h1 class="text-center">Modifica un  Comic</h1>
+            <h1 class="text-center">Modifica un Comic</h1>
 
             <div class="row py-5">
 
                 <div class="col-12  mx-auto mb-3 w-75">
-                    <form action="{{ route('comics.update' , $comic->id) }}" method="POST">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <form action="{{ route('comics.update', $comic->id) }}" method="POST">
                         @csrf
+                        @method('PUT')
                         <div class="row">
                             <div class="mb-3 col-6">
                                 <label for="title" class="form-label">Titolo</label>
-                                <input type="text" class="form-control" name="title" id="title" value="{{ $comic->title }}" required maxlength="255" placeholder="Inserisci il titolo originale">
+                                <input type="text" class="form-control" name="title" id="title"
+                                    value="{{ old('title',$comic->title) }}" required maxlength="255"
+                                    placeholder="Inserisci il titolo originale">
                             </div>
                             <div class="mb-3 col-6">
                                 <label for="nome" class="form-label">Nome</label>
-                                <input type="text" class="form-control" name="series" id="nome" value="{{ $comic->series }}" required  placeholder="Inserisci il nome">
+                                <input type="text" class="form-control" name="series" id="nome"
+                                    value="{{ old('series',$comic->series) }}" required placeholder="Inserisci il nome">
                             </div>
                             <div class="mb-3 col-4">
                                 <label for="type" class="form-label">Tipo</label>
                                 <select class="form-select" name="type" id="type" required>
-                                    <option selected>{{ $comic->type }}</option>
-                                    <option value="comic book">Comic Book</option>
-                                    <option value="graphic novel">Graphic Novel</option>
+                                    <option selected>Seleziona un tipo</option>
+                                    <option value="comic book" {{ old('type', $comics->type) == 'comic book' ? 'selected' : '' }}>Comic Book</option>
+                                    <option value="graphic novel" {{ old('type', $comics->type) == 'graphic novel' ? 'selected' : '' }}>Graphic Novel</option>
                                 </select>
                             </div>
                             <div class="mb-3 col-4">
                                 <label for="price" class="form-label">Prezzo</label>
-                                <input type="number" class="form-control" step=".01" name="price" value="{{ $comic->price }}" id="price" required placeholder="Inserisci il prezzo">
+                                <input type="number" class="form-control" step=".01" name="price"
+                                    value="{{ old('price',$comic->price) }}" id="price" required placeholder="Inserisci il prezzo">
                             </div>
                             <div class="mb-3 col-4">
                                 <label for="sale_date" class="form-label">Sconto</label>
-                                <input type="date" class="form-control"  name="sale_date" value="{{ $comic->sale_date }}"  id="sale_date" required placeholder="Inserisci la data in cui è scontato">
+                                <input type="date" class="form-control" name="sale_date" value="{{ old('sale_date',$comic->sale_date) }}"
+                                    id="sale_date" required placeholder="Inserisci la data in cui è scontato">
                             </div>
                             <div class="mb-3">
                                 <label for="description" class="form-label">Descrizione</label>
-                                <textarea class="form-control" name="description"  id="description" rows="3" placeholder="Inserisci una descrizione...">{{ $comic->description }}</textarea>
+                                <textarea class="form-control" name="description" id="description" rows="3"
+                                    placeholder="Inserisci una descrizione...">{{ old('description',$comic->description) }}</textarea>
                             </div>
                             <div class="col-12 d-flex justify-content-center mt-3">
                                 <button type="submit" class="btn btn-success w-25">

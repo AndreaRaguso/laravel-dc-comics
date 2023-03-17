@@ -10,36 +10,58 @@
             <div class="row py-5">
 
                 <div class="col-12  mx-auto mb-3 w-75">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <form action="{{ route('comics.store') }}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="mb-3 col-6">
-                                <label for="title" class="form-label">Titolo</label>
-                                <input type="text" class="form-control" name="title" id="title" required maxlength="255" placeholder="Inserisci il titolo originale">
+                                <label for="title"
+                                    class="form-label  @error('title') text-danger @enderror">Titolo</label>
+                                <input type="text" class="form-control @error('title') is-invalid @enderror"
+                                    name="title" id="title" required maxlength="255"
+                                    placeholder="Inserisci il titolo originale" value="{{ old('title') }}">
+                                @error('title')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="mb-3 col-6">
                                 <label for="nome" class="form-label">Nome</label>
-                                <input type="text" class="form-control" name="series" id="nome" required  placeholder="Inserisci il nome">
+                                <input type="text" class="form-control" name="series" id="nome" required
+                                    placeholder="Inserisci il nome">
+                                @error('series')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="mb-3 col-4">
                                 <label for="type" class="form-label">Tipo</label>
                                 <select class="form-select" name="type" id="type" required>
-                                    <option selected>Seleziona un tipo</option>
-                                    <option value="comic book">Comic Book</option>
-                                    <option value="graphic novel">Graphic Novel</option>
+                                    <option {{ old('type') && old('type') == '' ? 'selected' : '' }}>Seleziona un tipo</option>
+                                    <option value="comic book" {{ old('type') == 'comic book' ? 'selected' : '' }}>Comic Book</option>
+                                    <option value="graphic novel" {{ old('type') == 'graphic novel' ? 'selected' : '' }}>Graphic Novel</option>
                                 </select>
                             </div>
                             <div class="mb-3 col-4">
                                 <label for="price" class="form-label">Prezzo</label>
-                                <input type="number" class="form-control" name="price" id="price" required placeholder="Inserisci il prezzo">
+                                <input type="number" class="form-control" name="price" id="price" required
+                                    placeholder="Inserisci il prezzo">
                             </div>
                             <div class="mb-3 col-4">
                                 <label for="sale_date" class="form-label">Sconto</label>
-                                <input type="date" class="form-control" name="sale_date" id="sale_date" required placeholder="Inserisci la data in cui è scontato">
+                                <input type="date" class="form-control" name="sale_date" id="sale_date" required
+                                    placeholder="Inserisci la data in cui è scontato">
                             </div>
                             <div class="mb-3">
                                 <label for="description" class="form-label">Descrizione</label>
-                                <textarea class="form-control" name="description" id="description" rows="3" placeholder="Inserisci una descrizione..."></textarea>
+                                <textarea class="form-control" name="description" id="description" rows="3"
+                                    placeholder="Inserisci una descrizione..."></textarea>
                             </div>
                             <div class="col-12 d-flex justify-content-center mt-3">
                                 <button type="submit" class="btn btn-success w-25">

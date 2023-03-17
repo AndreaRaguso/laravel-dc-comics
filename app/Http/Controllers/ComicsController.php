@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
+
+use App\Http\Requests\ComicRequest;
 use App\Models\Comic;
 
 class ComicsController extends Controller
@@ -29,15 +34,37 @@ class ComicsController extends Controller
         return view('comics.create');
     }
 
+    private function validateData($data)
+    {
+        $validator = Validator::make($data, [
+            'title' => 'required|max:255',
+            'series' => 'required|max:255',
+            'type' => [
+                'required',
+                Rule::in(['comic book', 'graphic novel'])
+            ],
+            'price' => 'required|numeric|min:1',
+            'sale_date' => 'required|date',
+            'description' => 'nullable|max:4096'
+        ], [
+            'title.required' => 'Il titolo è obbligatorio!',
+            'series.required' => 'Il nome è obbligatorio!',
+        ])->validate();
+
+        return $validator;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ComicRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
+
+
         $singlecomic = new Comic;
         $singlecomic->title = $data['title'];
         $singlecomic->type = $data['type'];
@@ -84,11 +111,11 @@ class ComicsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ComicRequest $request, $id)
     {
         $comic = Comic::findOrFail($id);
 
-        $data = $request->all();
+        $data = $request->validated();
 
         $comic->update($data);
 
